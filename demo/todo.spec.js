@@ -1,35 +1,34 @@
 const puppeteer = require('puppeteer');
 const assert = require("assert");
 
-describe('TODOアプリのテスト', function(){
+describe('TODOアプリのテスト', function () {
 
   // mocha のタイムアウトを設定
+  // 注意: これを包む関数は、アロー関数にしてはならない。
+  // See: https://mochajs.org/#arrow-functions
   this.timeout(5000);
 
   const appUrl = 'http://localhost:8080/demo/todo.html';
   let browser, page;
 
-  before(async function(done){
-
+  before(async () => {
     // CIとlocalでpuppeteerの起動パラメータを切り替える
-    const params = process.env.CI ? {
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    } : {
-      headless: false,
-      slowMo: 250
-    };
+    // const params = process.env.CI ? {
+    //   args: ['--no-sandbox', '--disable-setuid-sandbox']
+    // } : {
+    //   headless: false,
+    //   slowMo: 250
+    // };
+    const params = { args: ['--no-sandbox', '--disable-setuid-sandbox'] };
 
     browser = await puppeteer.launch(params);
     page = await browser.newPage();
     page.on('console', console.log);
-    done();
   });
 
   describe('画面遷移時', () => {
-
-    before(async function(done){
-      await page.goto(appUrl, {waitUntil: 'networkidle'});
-      done();
+    before(async () => {
+      await page.goto(appUrl, {waitUntil: 'networkidle2'});
     });
 
     it('タスクが2つ表示されていること', async () => {
@@ -42,11 +41,9 @@ describe('TODOアプリのテスト', function(){
 
     const newTaskValue = '勉強するぞ！';
 
-    before(async function(done){
-      await page.focus('.newTask');    
-      await page.type(newTaskValue);
+    before(async () => { 
+      await page.type('.newTask', newTaskValue);
       await page.click('input[type=submit]');
-      done();
     });
 
     it('タスクが3つ表示されること', async () => {
@@ -71,9 +68,7 @@ describe('TODOアプリのテスト', function(){
 
   });
 
-  after(async (done) => {
+  after(async () => {
     browser.close();
-    done();
   });
-  
 });
