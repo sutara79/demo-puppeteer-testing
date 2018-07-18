@@ -4,7 +4,7 @@ const Mocha = require('mocha');
 
 const runHttpServer = () => {
   const server = connect();
-  server.use(serveStatic(__dirname));
+  server.use(serveStatic('./'));
   console.log('Server running on 8080');
   return new Promise((resolve, reject) => {
     server.listen(8080, () => {
@@ -14,8 +14,12 @@ const runHttpServer = () => {
 };
 
 const runTest = () => {
-  const mocha = new Mocha();
-  mocha.addFile('./demo/todo.spec.js');
+  const mocha = new Mocha({
+    timeout: 5000,
+    ui: 'bdd',
+    reporter: 'spec'
+  });
+  mocha.addFile('./test/todo.spec.js');
   return new Promise((resolve, reject) => {
     mocha.run(failures => {
       resolve(failures);

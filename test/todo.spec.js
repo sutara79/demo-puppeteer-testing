@@ -1,14 +1,8 @@
 const puppeteer = require('puppeteer');
 const assert = require("assert");
 
-describe('TODOアプリのテスト', function () {
-
-  // mocha のタイムアウトを設定
-  // 注意: これを包む関数は、アロー関数にしてはならない。
-  // See: https://mochajs.org/#arrow-functions
-  this.timeout(5000);
-
-  const appUrl = 'http://localhost:8080/demo/todo.html';
+describe('TODOアプリのテスト', () => {
+  const appUrl = 'http://localhost:8080/index.html';
   let browser, page;
 
   before(async () => {

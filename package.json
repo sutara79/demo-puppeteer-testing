@@ -1,7 +1,7 @@
 {
-  "name": "puppeteer_study",
+  "name": "demo-puppeteer-testing",
   "scripts": {
-    "test": "node test"
+    "test": "node ./test/test.js"
   },
   "dependencies": {
     "connect": "^3.6.6",
