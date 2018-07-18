@@ -6,18 +6,13 @@ describe('TODOアプリのテスト', () => {
   let browser, page;
 
   before(async () => {
-    // CIとlocalでpuppeteerの起動パラメータを切り替える
-    // const params = process.env.CI ? {
-    //   args: ['--no-sandbox', '--disable-setuid-sandbox']
-    // } : {
-    //   headless: false,
-    //   slowMo: 250
-    // };
-    const params = { args: ['--no-sandbox', '--disable-setuid-sandbox'] };
-
-    browser = await puppeteer.launch(params);
+    browser = await puppeteer.launch();
     page = await browser.newPage();
     page.on('console', console.log);
+  });
+
+  after(async () => {
+    browser.close();
   });
 
   describe('画面遷移時', () => {
@@ -59,10 +54,5 @@ describe('TODOアプリのテスト', () => {
       });
       assert.equal(val, newTaskValue);
     });
-
-  });
-
-  after(async () => {
-    browser.close();
   });
 });

@@ -1,11 +1,24 @@
 {
   "name": "demo-puppeteer-testing",
+  "description": "My practice to use puppeteer and Mocha",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Yuusaku Miyazaki <toumin.m7@gmail.com>",
+  "homepage": "https://github.com/sutara79/demo-puppeteer-testing",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sutara79/demo-puppeteer-testing.git"
+  },
   "scripts": {
     "test": "node ./test/test.js"
   },
   "dependencies": {
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
     "connect": "^3.6.6",
     "mocha": "^5.2.0",
+    "power-assert": "^1.6.0",
     "puppeteer": "^1.6.0",
     "serve-static": "^1.13.2"
   }
