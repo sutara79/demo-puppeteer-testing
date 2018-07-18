@@ -1,13 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <meta http-equiv="cache-control" content="no-cache">
-    <title>TODO</title>
-  </head>
-  <body>
-    <todo></todo>
-    <script src="./dist/todo.js"></script>
-  </body>
+<head>
+<meta charset="utf-8">
+<title>demo-puppeteer-testing</title>
+</head>
+<body>
+<h1>demo-puppeteer-testing</h1>
+<p>
+  This is a demo of a jQuery plugin that is made provisionally for testing.<br>
+  This plugin will show current year.
+</p>
+<button id="btn">Get Year</button>
+<div id="year"></div>
+
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./dist/jquery.set-year.js"></script>
+<script>
+$('#btn').click(function() {
+  $('#year').setYear();
+})
+</script>
+</body>
 </html>

@@ -1,35 +1,40 @@
 /**
- *  @file Unit testing
- *  Do not use ES6 or later.
+ * @file E2E testing
  */
-describe('jquery.set-year.js', function() {
-  var int_year;
+const puppeteer = require('puppeteer');
+const assert = require('assert');
 
-  beforeEach(function() {
-    int_year = $('<div>').setYear().text();
+describe('index.html', function () {
+  const appUrl = 'http://localhost:8080/';
+  let browser, page;
+
+  before(async function () {
+    browser = await puppeteer.launch();
+    page = await browser.newPage();
+    page.on('console', console.log);
+    await page.goto(appUrl, {waitUntil: 'load'});
   });
 
-  it('int_year should be above 2000', function() {
-    assert(parseInt(int_year, 10) > 2000);
-    assert(1 == 1);
+  after(async function () {
+    browser.close();
   });
 
-  it('length of int_year should be 4', function() {
-    assert(int_year.length == 4);
-    assert(1 == 1);
-  });
-});
-
-describe('FOO', () => {
-  it('bar1', () => {
-    assert(1 == 1);
-  });
-  describe('Bar', () => {
-    it('bar2', () => {
-      assert(1 == 1);
+  describe('Page load', function () {
+    it('should empty', async function () {
+      let year = await page.evaluate(() => {
+        return document.querySelector('#year').textContent;
+      });
+      assert.equal(year, '');
     });
-  })
-});
-it('bar1', () => {
-  assert(1 == 1);
+  });
+  
+  describe('Clicking button', function () {
+    it('should get year', async function() {
+      await page.click('#btn');
+      let year = await page.evaluate(() => {
+        return document.querySelector('#year').textContent;
+      });
+      assert(year.length == 4);
+    });
+  });
 });

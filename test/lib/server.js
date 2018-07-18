@@ -1,3 +1,6 @@
+/**
+ * @file HTTP server
+ */
 const connect = require('connect');
 const serveStatic = require('serve-static');
 
@@ -8,7 +11,7 @@ module.exports = {
    * @param  {Number} port Port number
    * @param  {String} root DocumentRoot
    */
-  start: (port = 8080, root = './') => {
+  start: function (port = 8080, root = './') {
     const server = connect();
     server.use(serveStatic(root));
     console.log('Server running on ' + port);

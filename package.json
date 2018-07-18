@@ -10,7 +10,7 @@
     "url": "https://github.com/sutara79/demo-puppeteer-testing.git"
   },
   "scripts": {
-    "test": "node ./test/test.js"
+    "test": "node ./test/index.js"
   },
   "dependencies": {
     "jquery": "^3.3.1"
