@@ -9,6 +9,19 @@ package-lock.json
 # npm
 node_modules/*
 
+# Mocha
+!node_modules/mocha/
+node_modules/mocha/*
+!node_modules/mocha/mocha.css
+!node_modules/mocha/mocha.js
+
+# power-assert
+!node_modules/power-assert/
+node_modules/power-assert/*
+!node_modules/power-assert/build/
+node_modules/power-assert/build/*
+!node_modules/power-assert/build/power-assert.js
+
 # jQuery
 !node_modules/jquery/
 node_modules/jquery/*
