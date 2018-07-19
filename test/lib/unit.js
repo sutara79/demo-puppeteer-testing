@@ -10,7 +10,7 @@ module.exports = {
    * @param  {String} url     Web page running mocha in the browser
    */
   report: async function (url) {
-    let browser = await puppeteer.launch();
+    let browser = await puppeteer.launch({args: ['--no-sandbox']});
     this.page = await browser.newPage();
     await this.page.goto(url, {waitUntil: 'load'});
 

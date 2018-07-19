@@ -9,7 +9,7 @@ describe('index.html', function () {
   let browser, page;
 
   before(async function () {
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({args: ['--no-sandbox']});
     page = await browser.newPage();
     page.on('console', console.log);
     await page.goto(appUrl, {waitUntil: 'load'});
