@@ -5,7 +5,8 @@ const puppeteer = require('puppeteer');
 const assert = require('assert');
 
 describe('index.html', function () {
-  const appUrl = 'http://localhost:8080/';
+  // const appUrl = 'http://localhost:8080/';
+  const appUrl = process.env.MY_E2E_URL;
   let browser, page;
 
   before(async function () {

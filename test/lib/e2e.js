@@ -17,7 +17,8 @@ module.exports = {
       ui: 'bdd',
       reporter: 'spec'
     });
-    mocha.addFile('./test/e2e/test.js');
+    // mocha.addFile('./test/e2e/test.js');
+    mocha.addFile(process.env.MY_E2E_FILE);
     return new Promise((resolve, reject) => {
       mocha.run(failures => {
         resolve(failures);
